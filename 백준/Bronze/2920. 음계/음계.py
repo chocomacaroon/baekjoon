@@ -1,0 +1,5 @@
+S = list(input().split())
+N_S = sorted(S)
+if S == N_S: print("ascending")
+elif N_S == S[::-1]: print("descending")
+else: print("mixed")
