@@ -1,15 +1,24 @@
 import sys
 
 input = sys.stdin.readline
-stamp = "OI"
 
 N = int(input().strip())
 M = int(input().strip())
 S = input().strip()
-P = "I"+stamp*N
-cnt = 0
 
-for i in range(M-len(P)+1):
-    if S[i:i+len(P)] == P:
-        cnt+=1
-print(cnt)
+cnt = 0
+cur = 0
+result = 0
+
+while cur < (M-1):
+    if S[cur:cur+3] == "IOI":
+        cnt += 1
+        cur += 2
+        if cnt == N:
+            result += 1
+            cnt -= 1
+    else:
+        cnt = 0
+        cur += 1
+
+print(result)
