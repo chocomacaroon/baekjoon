@@ -1,9 +1,11 @@
-moem = ['a', 'e', 'i', 'o', 'u']
+moem = ["a","e","i","o","u"]
+
 while True:
-  cnt = 0
-  S = input()
-  if S == "#": break;
-  for i in S:
-      if i.lower() in moem:
-        cnt += 1
-  print(cnt)
+    s = input()
+    if s == "#":
+        break
+    cnt = 0
+    for c in s:
+        if c.lower() in moem:
+            cnt+=1
+    print(cnt)
