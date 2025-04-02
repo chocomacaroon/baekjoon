@@ -1,10 +1,10 @@
 # [level 0] 배열의 원소만큼 추가하기 - 181861 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/181861) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/181861?language=cpp) 
 
 ### 성능 요약
 
-메모리: 5.7 MB, 시간: 2.37 ms
+메모리: 5.71 MB, 시간: 2.39 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2025년 02월 12일 15:49:14
+2025년 04월 02일 17:42:57
 
 ### 문제 설명
 
