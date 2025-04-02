@@ -1,6 +1,6 @@
 # [level 0] 날짜 비교하기 - 181838 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/181838) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/181838?language=cpp) 
 
 ### 성능 요약
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2025년 02월 14일 00:16:58
+2025년 04월 02일 15:50:14
 
 ### 문제 설명
 
