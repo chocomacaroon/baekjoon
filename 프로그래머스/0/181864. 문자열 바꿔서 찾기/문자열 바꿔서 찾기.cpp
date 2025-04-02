@@ -1,24 +1,21 @@
 #include <string>
 #include <vector>
-#include <algorithm>
 
 using namespace std;
 
 int solution(string myString, string pat) {
     int answer = 0;
-    string inverse = "";
-    for(int i = 0; i < myString.size(); i++){
-        if(myString[i] == 'A'){
-            inverse += 'B';
+    string new_string = "";
+    for(auto c:myString){
+        if(c == 'A'){
+            new_string += "B";
         }
-        else if(myString[i] == 'B'){
-            inverse += 'A';
+        else if(c == 'B'){
+            new_string += "A";
         }
     }
-    if(inverse.find(pat) != string::npos){
+    if(new_string.find(pat) != string::npos){
         return 1;
     }
-    else{
-        return 0;
-    }
+    return answer;
 }
