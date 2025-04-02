@@ -1,10 +1,10 @@
 # [level 0] n보다 커질 때까지 더하기 - 181884 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/181884) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/181884?language=cpp) 
 
 ### 성능 요약
 
-메모리: 9.26 MB, 시간: 0.01 ms
+메모리: 3.66 MB, 시간: 0.01 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2025년 03월 25일 19:31:51
+2025년 04월 03일 02:36:15
 
 ### 문제 설명
 
