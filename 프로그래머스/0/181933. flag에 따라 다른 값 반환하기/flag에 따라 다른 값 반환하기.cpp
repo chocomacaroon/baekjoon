@@ -4,9 +4,9 @@
 using namespace std;
 
 int solution(int a, int b, bool flag) {
-    if(flag)
+    int answer = 0;
+    if(flag){
         return a+b;
-    else{
-        return a-b;
     }
+    return a-b;
 }
