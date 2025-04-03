@@ -1,18 +1,15 @@
 #include <string>
 #include <vector>
+#include <cctype>
 #include <algorithm>
 
 using namespace std;
 
 int solution(string myString, string pat) {
     int answer = 0;
-    for(int i = 0; i < myString.size(); i++){
-        myString[i] = tolower(myString[i]);
-    }
-    for(int j = 0; j < pat.size(); j++){
-        pat[j] = tolower(pat[j]);
-    }
-    if(myString.find(pat)==string::npos){
+    transform(myString.begin(), myString.end(), myString.begin(),::tolower);
+    transform(pat.begin(), pat.end(), pat.begin(),::tolower);
+    if(myString.find(pat) == string::npos){
         return 0;
     }
     else{

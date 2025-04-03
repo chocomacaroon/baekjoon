@@ -1,10 +1,10 @@
 # [level 0] 원하는 문자열 찾기 - 181878 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/181878) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/181878?language=cpp) 
 
 ### 성능 요약
 
-메모리: 4.14 MB, 시간: 0.49 ms
+메모리: 4.11 MB, 시간: 0.31 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2025년 02월 12일 17:20:23
+2025년 04월 03일 10:47:32
 
 ### 문제 설명
 
