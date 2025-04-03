@@ -1,24 +1,20 @@
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <cctype>
 
 using namespace std;
 
 vector<string> solution(vector<string> strArr) {
     vector<string> answer;
-    for(int i = 0; i < strArr.size(); i++){
-        string tmp = "";
-        if(i%2 == 0){
-            for(int j = 0; j < strArr[i].size(); j++){
-                tmp += tolower(strArr[i][j]);
-            }
-            answer.push_back(tmp);
+    for(int i = 0;i < strArr.size(); i++){
+        if(i%2==0){
+            transform(strArr[i].begin(), strArr[i].end(), strArr[i].begin(), ::tolower);
         }
         else{
-            for(int j = 0; j < strArr[i].size(); j++){
-                tmp += toupper(strArr[i][j]);
-            }
-            answer.push_back(tmp);
+            transform(strArr[i].begin(), strArr[i].end(), strArr[i].begin(), ::toupper);
         }
+        answer.push_back(strArr[i]);
     }
     return answer;
 }
