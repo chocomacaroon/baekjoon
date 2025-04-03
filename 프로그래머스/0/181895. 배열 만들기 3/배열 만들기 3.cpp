@@ -5,8 +5,10 @@ using namespace std;
 
 vector<int> solution(vector<int> arr, vector<vector<int>> intervals) {
     vector<int> answer;
-    for(int i = 0; i < intervals.size(); i++){
-        for(int j = intervals[i][0]; j <= intervals[i][1]; j++){
+    for(auto i : intervals){
+        int s =i[0];
+        int e = i[1];
+        for(int j = s; j <= e; j++){
             answer.push_back(arr[j]);
         }
     }
