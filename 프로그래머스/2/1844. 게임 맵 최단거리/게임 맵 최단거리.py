@@ -1,25 +1,21 @@
+from collections import deque
+
 def solution(maps):
-    result = bfs(maps)
-    return result if result > 0 else -1
-
-def bfs(maps):
-    n, m = len(maps), len(maps[0])
-    queue = [(0, 0, 1)]  # (x, y, 거리)
-    directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]  # 하, 상, 우, 좌
-    
-    while queue:
-        x, y, distance = queue.pop(0)  # 큐의 앞에서 요소 제거
-        
-        # 목적지에 도착한 경우
-        if x == n - 1 and y == m - 1:
-            return distance
-        
-        for dx, dy in directions:
-            next_x, next_y = x + dx, y + dy
-            
-            # 유효한 좌표 및 방문 가능 여부 체크
-            if 0 <= next_x < n and 0 <= next_y < m and maps[next_x][next_y] == 1:
-                maps[next_x][next_y] = 0  # 방문 처리
-                queue.append((next_x, next_y, distance + 1))  # 큐에 추가
-
-    return -1  # 목적지에 도달할 수 없는 경우
+    answer = 0
+    dx = [1,-1,0,0]
+    dy = [0,0,1,-1]
+    v = [[0]*len(maps[0]) for _ in range(len(maps))]
+    q = deque()
+    q.append((0,0))
+    v[0][0] = 1
+    while q:
+        x,y=q.popleft()
+        for i in range(4):
+            nx,ny = x+dx[i],y+dy[i]
+            if 0<=nx<len(maps) and 0<=ny<len(maps[0]):
+                if v[nx][ny]==0 and maps[nx][ny]==1:
+                    q.append((nx,ny))
+                    v[nx][ny] = v[x][y]+1
+                    if nx == len(maps)-1 and ny == len(maps[0])-1:
+                        return v[nx][ny]
+    return -1
