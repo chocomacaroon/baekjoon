@@ -1,16 +1,11 @@
 def solution(numbers, target):
-    global cnt
-    cnt = 0
-    dfs(numbers,target,0,0)
-    return cnt
+    answer = 0
+    return dfs(0,0,numbers, target)
 
-def dfs(numbers, target, idx, values):
-    global cnt
-    if idx == len(numbers) and values == target:
-        cnt += 1
-        return
-    elif idx == len(numbers):
-        return
-    dfs(numbers,target,idx+1, values+numbers[idx])
-    dfs(numbers,target,idx+1, values-numbers[idx])
-    
+def dfs(i, result, numbers, target):
+    if i == len(numbers):
+        if result == target:
+            print(result)
+            return 1
+        return 0
+    return dfs(i+1, result+numbers[i], numbers, target) + dfs(i+1, result-numbers[i], numbers, target)
