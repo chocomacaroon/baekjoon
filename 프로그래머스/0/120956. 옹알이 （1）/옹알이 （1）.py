@@ -1,12 +1,10 @@
 def solution(babbling):
     answer = 0
-    can = ["aya", "ye", "woo", "ma"]
+    joka = ["aya", "ye", "woo", "ma"]
     for b in babbling:
-        tmp = b[:]
-        for c in can:            
-            tmp = tmp.replace(c,"@"*len(c))
-        if tmp == "@"*len(b):
+        for j in joka:
+            if j in b:
+                b = b.replace(j," ")
+        if len(b.split()) == 0:
             answer += 1
     return answer
-
-#maya
