@@ -6,18 +6,18 @@ using namespace std;
 
 vector<int> solution(string s) {
     vector<int> answer;
-    vector<char> word;
+    vector<char> tmp;
+    vector<char> rev;
     for(int i = 0; i < s.size(); i++){
-        if(word.empty() or find(word.begin(), word.end(), s[i]) == word.end()){
+        rev = tmp;
+        reverse(rev.begin(), rev.end());
+        if(find(tmp.begin(), tmp.end(), s[i]) == tmp.end()){
             answer.push_back(-1);
         }
         else{
-            vector<char> rev = word;
-            reverse(rev.begin(), rev.end());
-            int dis = distance(rev.begin(), find(rev.begin(), rev.end(), s[i]));
-            answer.push_back(i-(word.size()-dis)+1);
+            answer.push_back(find(rev.begin(), rev.end(), s[i]) - rev.begin()+1);
         }
-        word.push_back(s[i]);
+        tmp.push_back(s[i]);
     }
     return answer;
 }
