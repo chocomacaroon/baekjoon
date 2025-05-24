@@ -1,6 +1,3 @@
 def solution(numbers):
-    answer = 0
-    m = max(numbers)
-    numbers.remove(m)
-    return m * max(numbers)
-    return answer
+    numbers.sort()
+    return numbers[-1]*numbers[-2]
