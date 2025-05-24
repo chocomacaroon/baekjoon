@@ -1,2 +1,2 @@
 def solution(num, k):
-    return str(num).find(str(k))+1 if str(num).find(str(k))+1 > 0 else -1
+    return str(num).index(str(k))+1 if str(k) in str(num) else -1
