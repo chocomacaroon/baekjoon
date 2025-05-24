@@ -1,10 +1,10 @@
 def solution(binomial):
     answer = 0
-    x,op,y = binomial.split()
-    if op == "+":
-        return int(x) + int(y)
-    elif op == "-":
-        return int(x) - int(y)
-    elif op == "*":
-        return int(x) * int(y)
+    n1,op,n2 = binomial.split()
+    if op == '+':
+        return int(n1) + int(n2)
+    elif op == '-':
+        return int(n1) - int(n2)
+    elif op == '*':
+        return int(n1) * int(n2)
     return answer
