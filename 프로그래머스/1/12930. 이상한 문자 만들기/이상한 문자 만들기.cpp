@@ -5,19 +5,22 @@ using namespace std;
 
 string solution(string s) {
     string answer = "";
-    int pos = 1;
+    int idx = 0;
     for(int i = 0; i < s.size(); i++){
-        if(isalpha(s[i])){
-            if(pos%2==0)
-                answer += tolower(s[i]);
-            else
-                answer += toupper(s[i]);
-            pos+=1;
+        if(s[i]==' '){
+            answer += ' ';
+            idx = 0;
         }
         else{
-            answer += s[i];
-            pos = 1;
+            idx+=1;
+            if(idx%2==0){
+            answer += tolower(s[i]);
         }
+        else if(idx%2!=0){
+            answer += toupper(s[i]);
+        }
+        }
+        
     }
     return answer;
 }
