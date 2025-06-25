@@ -6,11 +6,12 @@ using namespace std;
 vector<int> solution(vector<int> arr) 
 {
     vector<int> answer;
-    
-    for(auto c : arr){
-        if(answer.empty() or answer.back()!=c){
-            answer.push_back(c);
+
+    for(int n : arr){
+        if(answer.empty()||answer[answer.size()-1] != n){
+            answer.push_back(n);
         }
     }
+
     return answer;
 }
