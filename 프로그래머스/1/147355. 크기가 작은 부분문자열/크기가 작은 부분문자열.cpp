@@ -1,22 +1,16 @@
 #include <string>
 #include <vector>
+#include <iostream> 
 
 using namespace std;
 
 int solution(string t, string p) {
     int answer = 0;
-    long long ptmp = 0;
-    for(int i = 0; i < p.size(); i++){
-        ptmp = ptmp*10+(p[i]-'0');
-    }
+    vector<int> v;
     for(int i = 0; i < t.size()-p.size()+1; i++){
-        long long tmp = 0;
-        for(int j = i; j < i+p.size(); j++){
-            tmp = tmp*10 + (t[j]-'0');
-        }
-        if(tmp <= ptmp){
+        if(stoll(t.substr(i,p.size())) <= stoll(p)){
             answer+=1;
-        }  
+        }
     }
     return answer;
 }
