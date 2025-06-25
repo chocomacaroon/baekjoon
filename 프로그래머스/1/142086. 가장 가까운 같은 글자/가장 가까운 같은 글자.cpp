@@ -6,18 +6,17 @@ using namespace std;
 
 vector<int> solution(string s) {
     vector<int> answer;
-    vector<char> tmp;
-    vector<char> rev;
+    vector<char> d;
     for(int i = 0; i < s.size(); i++){
-        rev = tmp;
-        reverse(rev.begin(), rev.end());
-        if(find(tmp.begin(), tmp.end(), s[i]) == tmp.end()){
+        if(find(d.begin(),d.end(),s[i])==d.end()){
             answer.push_back(-1);
         }
         else{
-            answer.push_back(find(rev.begin(), rev.end(), s[i]) - rev.begin()+1);
+            answer.push_back(1+find(d.begin(),d.end(),s[i])-d.begin());
         }
-        tmp.push_back(s[i]);
+        reverse(d.begin(), d.end());
+        d.push_back(s[i]);
+        reverse(d.begin(), d.end());
     }
     return answer;
 }
