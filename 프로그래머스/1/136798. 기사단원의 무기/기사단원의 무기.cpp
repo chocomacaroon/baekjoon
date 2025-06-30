@@ -4,22 +4,26 @@
 
 using namespace std;
 
+int cnt(int n){
+    int res = 0;
+    for(int i = 1; i < int(sqrt(n))+1; i++){
+        if(n % i == 0)
+            res += 2;
+    }
+    if(n == int(sqrt(n))*int(sqrt(n))){
+        res  -= 1;
+    }
+    return res;
+}
 int solution(int number, int limit, int power) {
     int answer = 0;
-    int num;
     for(int i = 1; i <= number; i++){
-        num = 0;
-        for(int j = 1; j <= sqrt(i); j++){
-            if(i%j==0){
-                num+=2;
-                if(j==i/j) num--;
-            }
+        if(cnt(i) <= limit){
+            answer += cnt(i);
         }
-            
-        if(num > limit)
+        else{
             answer += power;
-        else
-            answer += num;
+        }  
     }
     return answer;
 }
