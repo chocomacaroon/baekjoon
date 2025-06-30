@@ -6,13 +6,15 @@ using namespace std;
 
 vector<int> solution(vector<string> name, vector<int> yearning, vector<vector<string>> photo) {
     vector<int> answer;
+    int score;
     for(int i = 0; i < photo.size(); i++){
-        int sum = 0;
-        for(auto n : photo[i]){
-            if(find(name.begin(), name.end(),n)!=name.end())
-                sum += yearning[find(name.begin(), name.end(),n)-name.begin()];
+        score = 0;
+        for(string s:photo[i]){
+            if(find(name.begin(), name.end(), s) != name.end())
+                score += yearning[find(name.begin(), name.end(), s) - name.begin()];
         }
-        answer.push_back(sum);
+        answer.push_back(score);
     }
+    
     return answer;
 }
