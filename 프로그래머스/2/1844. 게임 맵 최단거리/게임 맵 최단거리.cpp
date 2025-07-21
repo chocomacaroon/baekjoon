@@ -1,29 +1,44 @@
 #include<vector>
 #include <queue>
+#include <algorithm>
+
 using namespace std;
 
 int solution(vector<vector<int> > maps)
-{   
-    vector<int> dx = {0,0,1,-1};
-    vector<int> dy = {1,-1,0,0};
+{
+    int answer = 0;
+    queue<vector<int>> q;
     
-    queue<pair<int,int>> q;
+    
+    vector<int> dx = {1, -1, 0, 0};
+    vector<int> dy = {0, 0, 1, -1};
+    vector<int> ans;
+    vector<vector<bool>> v(maps.size(), vector<bool>(maps[0].size(), false)); // 몇 곱하기 몇 벡터인지
+    
     q.push({0,0});
+    v[0][0] = true;
     
+    //visit 조건 있어야됨
     while(!q.empty()){
-        int x = q.front().first;
-        int y = q.front().second;
+        
+        int x = q.front()[0];
+        int y = q.front()[1];
+        
         q.pop();
         
+        if(x == maps.size()-1 && y == maps[0].size()-1){
+            ans.push_back(maps[x][y]);
+        }
         for(int i = 0; i < 4; i++){
-            int nx = x + dx[i];
-            int ny = y + dy[i];
-            if(0 <= nx && nx < maps.size() && 0 <= ny && ny < maps[0].size() && maps[nx][ny] == 1){
-                maps[nx][ny] = maps[x][y] + 1;
-                q.push({nx,ny});
+            if(x+dx[i] >= 0 && x+dx[i] < maps.size() && y+dy[i] >= 0 && y+dy[i] < maps[0].size()){
+                if(maps[x+dx[i]][y+dy[i]] != 0 && v[x+dx[i]][y+dy[i]] == false){
+                    maps[x+dx[i]][y+dy[i]] += maps[x][y];
+                    q.push({x+dx[i], y+dy[i]});
+                    v[x+dx[i]][y+dy[i]] = true;
+                }
             }
         }
     }
-    if(maps[maps.size()-1][maps[0].size()-1] == 1) return -1;
-    return maps[maps.size()-1][maps[0].size()-1];
+    if(!ans.empty()) return *min_element(ans.begin(), ans.end());
+    else return -1;
 }
