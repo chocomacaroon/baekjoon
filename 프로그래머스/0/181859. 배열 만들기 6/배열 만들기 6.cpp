@@ -4,24 +4,24 @@
 using namespace std;
 
 vector<int> solution(vector<int> arr) {
-    vector<int> answer;
+    vector<int> stk;
     int i = 0;
     while(i < arr.size()){
-        if(answer.size() == 0){
-            answer.push_back(arr[i]);
-            i++;
+        if(stk.empty()){
+            stk.push_back(arr[i]);
+            i+=1;
         }
-        else if(answer.back() == arr[i]){
-            answer.pop_back();
-            i++;
-        }
-        else if(answer.back() != arr[i]){
-            answer.push_back(arr[i]);
-            i++;
+        else{
+            if(stk.back() == arr[i]){
+                stk.pop_back();
+                i+=1;
+            }
+            else{
+                stk.push_back(arr[i]);
+                i+=1;
+            }
         }
     }
-    if(answer.size()==0){
-        answer.push_back(-1);
-    }
-    return answer;
+    if(stk.empty()) return {-1};
+    return stk;
 }
