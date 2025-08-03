@@ -5,10 +5,8 @@ using namespace std;
 
 int solution(int n) {
     int answer = 0;
-    while(1){
-        answer++;
-        if(n%answer==1)
-            return answer;
+    for(int i = 2; i < n; i++){
+        if(n%i==1) return i;
     }
     return answer;
 }
