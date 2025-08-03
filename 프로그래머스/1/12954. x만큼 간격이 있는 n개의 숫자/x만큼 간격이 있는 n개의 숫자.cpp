@@ -5,8 +5,10 @@ using namespace std;
 
 vector<long long> solution(int x, int n) {
     vector<long long> answer;
-    for(int i = 1; i <= n; i++){
-        answer.push_back(x*i);
+    int m = x;
+    for(long long i = 0; i < n; i++){
+        answer.push_back(m);
+        m += x;
     }
     return answer;
 }
