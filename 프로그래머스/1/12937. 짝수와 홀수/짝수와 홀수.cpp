@@ -4,6 +4,5 @@
 using namespace std;
 
 string solution(int num) {
-    if(num%2) return "Odd";
-    return "Even";
+    return (num%2)? "Odd" : "Even";
 }
