@@ -12,8 +12,9 @@ int gcd(int a, int b){
     }
     return a;
 }
+
 vector<int> solution(int n, int m) {
     vector<int> answer;
-    return {gcd(n,m), (n*m)/(gcd(n,m))};
+    answer = {gcd(n,m), (n*m)/(gcd(n,m))};
     return answer;
 }
