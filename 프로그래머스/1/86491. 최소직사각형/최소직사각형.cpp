@@ -1,29 +1,20 @@
 #include <string>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
 int solution(vector<vector<int>> sizes) {
     int answer = 0;
-    int w = 0;
     int h = 0;
-    int min = 0;
-    int max = 0;
+    int w = 0;
+    int n1, n2;
     for(int i = 0; i < sizes.size(); i++){
-        if(sizes[i][0] > sizes[i][1]){
-            max = sizes[i][0];
-            min = sizes[i][1];
-        }
-        else{
-            max = sizes[i][1];
-            min = sizes[i][0];
-        }
-        if(min > w){
-            w = min;
-        }
-        if(max > h){
-            h = max;
-        }
+        n1 = sizes[i][0];
+        n2 = sizes[i][1];
+        if(n1>n2) swap(n1,n2);
+        if(h < n1) h = n1;
+        if(w < n2) w = n2;
     }
     return w*h;
 }
