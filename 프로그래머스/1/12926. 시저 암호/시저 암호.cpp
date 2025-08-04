@@ -5,22 +5,16 @@ using namespace std;
 
 string solution(string s, int n) {
     string answer = "";
-    for(int i = 0; i < s.size(); i++){
-        char c = s[i];
+    for(char c : s){
         if(isalpha(c)){
-            for(int j = 0; j < n; j++){
-            if(c == 'z'){
-                c = 'a';
-            }
-            else if(c == 'Z'){
-                c = 'A';
-            }
-            else{
-                c+=1;
-            }
+            if(isupper(c) && (c+n) > 'Z')
+                answer += (c+n-26);
+            else if(islower(c) && (c+n) > 'z')
+                answer += (c+n-26);
+            else
+                answer += (c+n);
         }
-    }
-        answer += c;    
+        else answer += ' ';
     }
     return answer;
 }
