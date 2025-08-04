@@ -6,17 +6,15 @@ using namespace std;
 
 vector<int> solution(string s) {
     vector<int> answer;
-    vector<char> d;
-    for(int i = 0; i < s.size(); i++){
-        if(find(d.begin(),d.end(),s[i])==d.end()){
+    string tmp = "";
+    for(auto c:s){
+        if(tmp.find(c) == string::npos){
             answer.push_back(-1);
         }
         else{
-            answer.push_back(1+find(d.begin(),d.end(),s[i])-d.begin());
+            answer.push_back(tmp.find(c)+1);
         }
-        reverse(d.begin(), d.end());
-        d.push_back(s[i]);
-        reverse(d.begin(), d.end());
+        tmp = c + tmp;
     }
     return answer;
 }
