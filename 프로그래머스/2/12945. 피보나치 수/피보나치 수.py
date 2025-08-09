@@ -1,10 +1,8 @@
 def solution(n):
-    answer = 0
-    if n <= 1:
-        return n
-    else:
-        f0 = 0
-        f1 = 1
-        for i in range(2,n+1):
-            f0,f1 = f1,f0+f1
-        return f1%1234567
+    n1 = 0
+    n2 = 1
+    if n == 0 : return 0
+    if n == 1 : return 1
+    for i in range(2, n+1):
+        n1, n2 = n2, n1 + n2
+    return n2 % 1234567
