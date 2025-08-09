@@ -1,21 +1,20 @@
-N,M = map(int, input().split())
-v = [0]*(N+1)
-result = []
 ans = []
 
-def dfs(n,start):
-    if n == M:
-        result.append(ans[:])
+def dfs(n, m, v, pos, lst):
+    if len(lst) == m:
+        ans.append(lst)
         return
-    for i in range(start+1,N+1):
-        if v[i] == 0:
-            v[i] = 1
-            ans.append(i)
-            dfs(n+1,i)
-            v[i] = 0
-            ans.pop()
+    for i in range(pos, n):
+        if not v[i]:
+            v[i] = True
+            dfs(n, m, v, i, lst + [i+1])
+            v[i] = False
 
-dfs(0,0)
+n, m = map(int, input().split())
 
-for i in result:
-    print(*i,sep=' ')
+v = [False] * n
+
+dfs(n, m, v, 0, [])
+
+for lst in ans:
+    print(*lst)
