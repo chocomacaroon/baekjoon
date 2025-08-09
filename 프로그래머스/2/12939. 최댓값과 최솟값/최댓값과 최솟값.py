@@ -1,5 +1,8 @@
 def solution(s):
     answer = ''
-    lst = list(map(int,s.split()))
-    answer = str(min(lst)) + " "+str(max(lst))
+    lst = s.split()
+    lst2 = []
+    for n in lst:
+        lst2.append(int(n))
+    answer = str(min(lst2)) + " " + str(max(lst2))
     return answer
