@@ -1,14 +1,11 @@
-answer = 0
-
-def dfs(su, pos, numbers, target):
-    global answer
-    if pos == len(numbers):
+def dfs(depth, numbers, target, su):
+    if depth == len(numbers):
         if su == target:
-            answer += 1
-        return
-    dfs(su + numbers[pos], pos+1, numbers, target)
-    dfs(su - numbers[pos], pos+1, numbers, target)
+            return 1
+        else:
+            return 0
+    return dfs(depth+1, numbers, target, su + numbers[depth]) + dfs(depth+1, numbers, target, su - numbers[depth])
+    
 
 def solution(numbers, target):
-    dfs(0, 0, numbers, target)
-    return answer
+    return dfs(0, numbers, target, 0)
