@@ -1,24 +1,27 @@
 #include <string>
 #include <vector>
+#include <map>
 #include <algorithm>
 
 using namespace std;
 
 int solution(int k, vector<int> tangerine) {
     int answer = 0;
-    vector<int> v = tangerine;
-    vector<int> cnt;
-    sort(v.begin(), v.end());
-    v.erase(unique(v.begin(), v.end()), v.end());
-    for(int n:v){
-        cnt.push_back(count(tangerine.begin(), tangerine.end(), n));
+    map<int, int> m;
+    for (int t:tangerine){
+        m[t]+=1;
     }
-    sort(cnt.begin(), cnt.end(), greater<int>());
-    int sum = 0;
-    for(int i=0;i<cnt.size();i++){
-        sum += cnt[i];
-        if(sum >= k){
-            return i + 1;
+    vector<pair<int, int>> v;
+    for(auto const& pair: m){
+        v.push_back({pair.first, pair.second});
+    }
+    sort(v.begin(), v.end(), [](const pair<int, int>& a, const pair<int, int>& b){return a.second > b.second;});
+    int total = 0;
+    for (auto const& pair:v){
+        total += pair.second;
+        answer+=1;
+        if(total >= k){
+            break;
         }
     }
     return answer;
