@@ -1,25 +1,18 @@
 #include <string>
 #include <vector>
+#include <numeric>
 
 using namespace std;
 
-int gcd(int a, int b){
-    int c;
-    while(b!=0){
-        c = a%b;
-        a = b;
-        b = c;
-    }
-    return a;
+int lcm(int n1, int n2){
+    return (n1*n2)/gcd(n1, n2);
 }
 
-int lcm(int a, int b){
-    return a*b/gcd(a,b);
-}
 int solution(vector<int> arr) {
-    int answer = 1;
-    for(int n:arr){
-        answer = lcm(n, answer);
+    int answer = 0;
+    int num = arr[0];
+    for(int i = 1; i < arr.size(); i++){
+        num = lcm (num, arr[i]);
     }
-    return answer;
+    return num;
 }
