@@ -1,34 +1,33 @@
 #include <iostream>
 #include <vector>
-#include <cmath>
 
 using namespace std;
 
 int solution(int n, int a, int b)
 {
-    int ground = 0;
-    vector<int> next;
-    for(int i = 1; i <= n; i++)
-        next.push_back(i);
-    
-    for(int j = 0; j < sqrt(n); j++){
-        ground += 1;
-        vector<int> now = next;
-        next = {};        
-        for(int i = 0; i < now.size(); i+=2){
-            if((now[i] == a && now[i+1] == b) || (now[i] == b && now[i+1] == a)){
-                return ground;
+    int round = 0;
+    vector<int> v;
+    for(int i = 1; i <= n; i++){
+        v.push_back(i);
+    }
+    while(1){
+        round += 1;
+        vector<int> tmp;
+        for(int i = 0; i < v.size(); i+=2){
+            if ((v[i] == a && v[i+1] == b) ||(v[i] == b && v[i+1] == a)){
+                return round;
             }
-            else if(now[i] == a || now[i] == b){
-                next.push_back(now[i]);
+            else if(v[i] == a || v[i] == b){
+                tmp.push_back(v[i]);
             }
-            else if(now[i+1] == a || now[i+1] == b){
-                next.push_back(now[i+1]);
+            else if(v[i+1] == a || v[i+1] == b){
+                tmp.push_back(v[i+1]);
             }
             else{
-                next.push_back(now[i]);
+                tmp.push_back(v[i]);
             }
         }
+        v = tmp;
     }
-    return ground;
+    return round;
 }
