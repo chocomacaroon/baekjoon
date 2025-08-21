@@ -1,23 +1,27 @@
 #include <iostream>
-#include <string>
+#include<string>
 #include <vector>
 
 using namespace std;
 
 int solution(string s)
 {
-    vector<char> v;
+    int answer = -1;
+    vector<char> stk;
     for(char c:s){
-        if(v.empty()){
-            v.push_back(c);
+        if (!stk.empty()){
+            if(stk.back()==c){
+                stk.pop_back();
+            }
+            else{
+                stk.push_back(c);
+            }
         }
         else{
-            if(v.back() == c)
-                v.pop_back();
-            else
-                v.push_back(c);
+            stk.push_back(c);
         }
     }
-    if(v.empty()) return 1;
-    else return 0;
+    if(stk.empty()) return 1;
+    return 0;
+    return answer;
 }
