@@ -6,22 +6,19 @@ using namespace std;
 
 vector<int> solution(string s) {
     vector<int> answer;
-    string str = "";
-    int n;
-    int cnt = 0;
-    int delet = 0;
-    while(s !="1"){
-        cnt += 1;
-        string bin = "";
-        n = count(s.begin(), s.end(), '1');
-        delet += s.size()-n;
-        while(n>0){
-            bin += to_string(n%2);
-            n/=2;
+    int zero_cnt = 0;
+    int times = 0;
+    while(s != "1"){
+        times += 1;
+        zero_cnt += count(s.begin(), s.end(), '0');
+        s.erase(remove(s.begin(), s.end(), '0'), s.end());
+        int len = s.length();
+        s = "";
+        while(len > 0){
+            s += to_string(len % 2);
+            len /= 2;
         }
-        reverse(bin.begin(), bin.end());
-        s = bin;
     }
-    answer = {cnt, delet};
+    answer = {times, zero_cnt};
     return answer;
 }
