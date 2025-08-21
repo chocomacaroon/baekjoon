@@ -1,26 +1,31 @@
 #include<string>
-#include <iostream>
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
 bool solution(string s)
 {
     bool answer = true;
-    vector<char> v;
-    for(char c:s){
-        if(v.empty())
-            v.push_back(c);
-        else{
-            if(v[v.size()-1]=='(' && c == ')')
-                v.pop_back();
-            else
-                v.push_back(c);
+    vector<char> stk;
+    for (auto c:s){
+        if (c == '('){
+            stk.push_back(c);
+        }
+        else if (c == ')'){
+            if (!stk.empty() && stk.back() == '('){
+                stk.pop_back();
+            }
+            else{
+                stk.push_back(c);
+            }
         }
     }
-    if(v.empty()){
-        answer = true;
+    if (!stk.empty()){
+        return false;
     }
-    else answer = false;
+    else{
+        return true;
+    }
     return answer;
 }
