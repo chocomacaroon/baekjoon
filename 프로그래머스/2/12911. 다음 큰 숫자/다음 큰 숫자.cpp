@@ -5,25 +5,26 @@
 using namespace std;
 
 int solution(int n) {
-    int answer = n;
-    string bin = "";
-    while(n>0){
-        bin += to_string(n%2);
-        n/=2;
+    int answer = 0;
+    string s = "";
+    int num = n;
+    while(num>0){
+        s += to_string(num%2);
+        num /= 2;
     }
-    
-    int cnt_one = count(bin.begin(), bin.end(), '1');
-    
+    int target = count(s.begin(), s.end(), '1');
     while(1){
-        answer+=1;
-        string bin = "";
-        int n = answer;
-        while(n > 0){
-            bin += to_string(n%2);
-            n /= 2;
+        n+=1;
+        s = "";
+        int num = n;
+        while(num>0){
+            s += to_string(num%2);
+            num /= 2;
         }
-        if(count(bin.begin(), bin.end(), '1') == cnt_one)
-            return answer;
+        int cnt = count(s.begin(), s.end(), '1');
+        if (cnt == target){
+            return n;
+        }
     }
     return answer;
 }
