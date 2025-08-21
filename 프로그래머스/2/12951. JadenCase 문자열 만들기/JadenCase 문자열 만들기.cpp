@@ -1,29 +1,25 @@
 #include <string>
 #include <vector>
-#include <numeric>
 
 using namespace std;
 
 string solution(string s) {
     string answer = "";
     bool flag = true;
-    for(char c:s){
-        if(flag){
-            if(isalpha(c) && islower(c))
-                answer += toupper(c);
-            else
-                answer += c;
-            flag = false;
+    for (char c:s){
+        if (c == ' '){
+            flag = true;
+            answer += c;
         }
         else{
-            if(isupper(c))
-                answer += tolower(c);
-            else
-                answer += c;
-        }
-        if(c == ' '){
-                flag = true;
+            if (flag == true){
+                flag = false;
+                answer += toupper(c);
             }
+            else{
+                answer += tolower(c);
+            }
+        }
     }
     return answer;
 }
