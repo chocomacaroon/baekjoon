@@ -1,51 +1,39 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <set>
 #include <algorithm>
-#include <numeric>
 
 using namespace std;
 
 vector<int> solution(string s) {
     vector<int> answer;
-    int i = 1;
-    vector<vector<int>> v;
-    while(i < s.size()-1){
-        string n;
-        vector<int> tmp;
-        if(s[i] == '{'){
-            n = "";
-            i+=1;
-            while(s[i]!='}'){
-                if(isdigit(s[i])){
-                    n += s[i];
-                }
-                else{
-                    tmp.push_back(stoi(n));
-                    n = "";
-                }
-                i+=1;
+    vector<vector<int>> vs;
+    s = s.substr(1, s.size()-2);
+    string num;
+    vector<int> tmp;
+    for(char c:s){
+        if(c == '{'){
+            tmp.clear();
+        }
+        else if(c == '}'){
+            tmp.push_back(stoi(num));
+            vs.push_back(tmp);
+        }
+        else if(num != "" && c == ','){
+            tmp.push_back(stoi(num));
+            num = "";
+        }
+        else{
+            num += c;
+        }
+    }
+    sort(vs.begin(), vs.end(), [](vector<int> v1, vector<int> v2){return v1.size() <= v2.size();});
+    for(auto a:vs){
+        for(auto n : a)
+            if ( find(answer.begin(), answer.end(), n) == answer.end()){
+                answer.push_back(n);
             }
-            if(n!=""){
-                tmp.push_back(stoi(n));
-            }   
-        }
-        if(!tmp.empty()){
-            v.push_back(tmp);
-            tmp = {};
-        }
-        i+=1;
-    }
-    
-    sort(v.begin(), v.end(),[](const vector<int>& a, const vector<int>& b) {return a.size() < b.size();});
-    int sum = 0;
-    if(v.size()>0){
-        answer.push_back(v[0][0]);
-        sum += v[0][0];
-    }
-    for(int i = 1; i < v.size(); i++){
-        answer.push_back(accumulate(v[i].begin(), v[i].end(),0)-sum);
-        sum = accumulate(v[i].begin(), v[i].end(),0);
     }
     return answer;
 }
