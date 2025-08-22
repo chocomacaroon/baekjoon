@@ -1,39 +1,32 @@
 #include <string>
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
 vector<int> solution(vector<int> progresses, vector<int> speeds) {
     vector<int> answer;
-    vector<int> waiting;
+    vector<int> res;
+    vector<int> residue;
     int days = 0;
-    int ans = 1;
-    
-    days += (100 - progresses[0]) / speeds[0];
-    if((100 - progresses[0]) % speeds[0] > 0){
-        days+=1;
+    int cnt = 0;
+    for (int i = 0; i < progresses.size(); i++){
+        residue.push_back(100 - progresses[i]);
     }
-    
-    for(int i = 1; i < progresses.size(); i++){
-        progresses[i] += (days*speeds[i]);
-        if(progresses[i] >= 100){
-            ans += 1;
+    for (int i = 0; i < progresses.size(); i++){
+        residue[i] -= (speeds[i]*days);
+        if(residue[i] > 0){
+            if(cnt > 0)
+                answer.push_back(cnt);
+            cnt = 1;
+            days += residue[i] / speeds[i];
+            if (residue[i] % speeds[i]) days += 1;
         }
         else{
-            answer.push_back(ans);
-            ans = 1;
-            days += (100 - progresses[i]) / speeds[i];
-            if((100 - progresses[i]) % speeds[i] > 0){
-                days+=1;
-            }
+            cnt+=1;
         }
+        res.push_back(days);
     }
-    answer.push_back(ans);
+    answer.push_back(cnt);
     return answer;
-}
-
-// 93
-// 30
-// 55
-
-// 100 - 93
+}    
