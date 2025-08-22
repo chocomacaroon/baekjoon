@@ -1,30 +1,33 @@
 #include <string>
 #include <vector>
-#include <queue>
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
-vector<int> ans;
-
-void dfs(int k, vector<vector<int>> dungeons, int cnt, vector<bool> v){
-    ans.push_back(cnt);
-    for(int i = 0; i < dungeons.size(); i++){
-        if(!v[i] && k >= dungeons[i][0]){
-            v[i] = true;
-            dfs(k - dungeons[i][1],dungeons, cnt+1, v);
-            v[i] = false;
+int dfs(vector<bool> visited, int k, vector<vector<int>> dungeons){
+    int max_dungeons_count = 0;
+    
+    for (int i = 0; i < visited.size(); i++){
+        if (!visited[i] && k >= dungeons[i][0]){
+            visited[i] = true;
+            int current_dungeons = 1 + dfs(visited, k - dungeons[i][1], dungeons);
+            max_dungeons_count = max(max_dungeons_count, current_dungeons);
+            visited[i] = false;
         }
     }
+    return max_dungeons_count;
 }
 
 int solution(int k, vector<vector<int>> dungeons) {
-    int answer = -1;
-    ans.clear();
-    queue<int> q;
-    vector<bool> v(dungeons.size(), false);
-    dfs(k, dungeons, 0, v);
-    answer = *max_element(ans.begin(), ans.end());
+    int answer = 0;
+    vector<bool> visited(dungeons.size(), false);
+    return dfs(visited, k, dungeons);
     return answer;
 }
+
+// n와 m 문제 처럼 모든 경우를 다 가보기
+// 80
+// 80 20
+// 50 40
+// 30 10
