@@ -1,28 +1,33 @@
 #include <string>
 #include <vector>
-#include <list>
 #include <algorithm>
 
 using namespace std;
 
 int solution(int cacheSize, vector<string> cities) {
     int answer = 0;
-    vector<string> cache;
-    for(auto s:cities){
-        transform(s.begin(), s.end(), s.begin(), ::tolower);
-        auto it = find(cache.begin(), cache.end(), s);
-        if(it != cache.end()){
+    vector<string> v;
+    
+    if(cacheSize == 0){
+        return cities.size() * 5;
+    }
+    
+    for(auto city : cities){
+        transform(city.begin(), city.end(), city.begin(), 
+                  [](unsigned char c){ return tolower(c); });
+        auto it = find(v.begin(), v.end(), city);
+        if(it != v.end()){ 
             answer += 1;
-            cache.erase(it);
-        }
+            v.erase(it);
+            v.push_back(city);
+        } 
         else{
             answer += 5;
-            if(cache.size() == cacheSize && cacheSize > 0){
-                cache.erase(cache.begin());
-            }
+            if (v.size() >= cacheSize) 
+                v.erase(v.begin());
+            v.push_back(city);
         }
-        if(cacheSize>0)
-            cache.push_back(s);
+        
     }
     return answer;
 }
